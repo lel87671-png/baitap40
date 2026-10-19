@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đèn Kéo Quân - Bài Tập 39</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .header-nav {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .header-nav a {
+            color: #4dabf7;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        /* Khung cảnh 3D perspective */
+        .scene {
+            width: 200px;
+            height: 300px;
+            perspective: 1000px;
+            margin-top: 20px;
+        }
+
+        /* Khối đèn kéo quân quay vòng tròn */
+        .lantern {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateLantern 12s linear infinite;
+        }
+
+        @keyframes rotateLantern {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+
+        /* 6 mặt của đèn kéo quân định vị dạng hình trụ 3D */
+        .face {
+            position: absolute;
+            width: 160px;
+            height: 240px;
+            left: 20px;
+            top: 30px;
+            border: 2px solid #ffd43b;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 0 15px rgba(255, 212, 59, 0.5);
+            transform: rotateY(calc((var(--i) - 1) * 60deg)) translateZ(200px);
+        }
+
+        .face img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-nav">
+        <a href="index.html">⬅ Quay lại Trang chủ</a>
+    </div>
+
+    <h2>Đèn Kéo Quân 3D (Rê chuột vào hình để dừng, rê ra để quay tiếp)</h2>
+
+    <!-- Khung chứa đèn kéo quân 3D -->
+    <div class="scene">
+        <div class="lantern" id="lantern">
+            <div class="face" style="--i: 1;"><img src="anh1.png" alt="Ảnh 1"></div>
+            <div class="face" style="--i: 2;"><img src="anh2.png" alt="Ảnh 2"></div>
+            <div class="face" style="--i: 3;"><img src="anh3.png" alt="Ảnh 3"></div>
+            <div class="face" style="--i: 4;"><img src="anh4.png" alt="Ảnh 4"></div>
+            <div class="face" style="--i: 5;"><img src="anh5.png" alt="Ảnh 5"></div>
+            <div class="face" style="--i: 6;"><img src="anh6.png" alt="Ảnh 6"></div>
+        </div>
+    </div>
+
+    <script>
+        const lantern = document.getElementById('lantern');
+
+        // Khi rê chuột vào đèn -> dừng quay
+        lantern.addEventListener('mouseenter', () => {
+            lantern.style.animationPlayState = 'paused';
+        });
+
+        // Khi rê chuột ra -> tiếp tục quay
+        lantern.addEventListener('mouseleave', () => {
+            lantern.style.animationPlayState = 'running';
+        });
+    </script>
+
+</body>
+</html>
